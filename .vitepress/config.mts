@@ -2,17 +2,29 @@ import { type DefaultTheme, type UserConfig, defineConfig } from "vitepress";
 import { withSidebar } from "vitepress-sidebar";
 import type { VitePressSidebarOptions } from "vitepress-sidebar/types";
 
+const locales = {
+  root: {
+    label: "English",
+    lang: "en",
+  },
+  ja: {
+    label: "日本語",
+    lang: "ja",
+  },
+};
+
 const config: UserConfig<DefaultTheme.Config> = {
   title: "Coding Kubernetes",
   description:
     "Implementing a minimal Kubernetes from scratch. CRI / CNI implementation included.",
   srcDir: "docs",
+  locales: locales,
+  rewrites: {
+    "en/:content*": ":content*",
+  },
   themeConfig: {
     i18nRouting: true,
-    nav: [
-      { text: "Home", link: "/" },
-      { text: "Examples", link: "/markdown-examples" },
-    ],
+    nav: [{ text: "Home", link: "/" }],
     socialLinks: [
       {
         icon: "github",
@@ -22,10 +34,17 @@ const config: UserConfig<DefaultTheme.Config> = {
   },
 };
 
-const sidebarConfig: VitePressSidebarOptions = {
-  documentRootPath: "docs",
-  collapsed: true,
-  useTitleFromFileHeading: true,
-};
+const sidebarConfigs: VitePressSidebarOptions[] = Object.entries(locales).map(
+  (locale) => {
+    return {
+      ...(locale[0] === "root" ? {} : { basePath: `/${locale[1].lang}/` }),
+      documentRootPath: `/docs/${locale[1].lang}`,
+      resolvePath: locale[0] === "root" ? "/" : `/${locale[1].lang}/`,
+      collapsed: true,
+      useTitleFromFileHeading: true,
+      useFolderTitleFromIndexFile: true,
+    };
+  },
+);
 
-export default defineConfig(withSidebar(config, sidebarConfig));
+export default defineConfig(withSidebar(config, sidebarConfigs));
