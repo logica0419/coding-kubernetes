@@ -37,7 +37,7 @@ tasks:
       - task: check-binary
         vars:
           BINARY: mkdocs
-          INSTALL_DOC: https://www.mkdocs.org/user-guide/installation/
+          INSTALL_DOC: https://squidfunk.github.io/mkdocs-material/getting-started/#installation
     cmds:
       - cp .vscode/settings-sample.json .vscode/settings.json
 
@@ -47,6 +47,6 @@ tasks:
       - task: check-binary
         vars:
           BINARY: mkdocs
-          INSTALL_DOC: https://www.mkdocs.org/user-guide/installation/
+          INSTALL_DOC: https://squidfunk.github.io/mkdocs-material/getting-started/#installation
     cmds:
       - mkdocs serve
