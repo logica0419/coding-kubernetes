@@ -3,7 +3,7 @@
 ## Requirements
 
 - [Task](https://taskfile.dev/)
-- [MkDocs](https://www.mkdocs.org/)
+- [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
 
 ## Workspace Initialization
 
