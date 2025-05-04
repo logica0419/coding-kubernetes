@@ -1,4 +1,6 @@
 /.vscode/*
 !/.vscode/settings-sample.json
 
-/site
+/node_modules
+.vitepress/dist
+.vitepress/cache

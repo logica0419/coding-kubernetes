@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "preinstall": "cp .vscode/settings-sample.json .vscode/settings.json",
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "1.6.3",
+    "vitepress-sidebar": "1.31.1"
+  }
+}
