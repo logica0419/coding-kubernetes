@@ -5,7 +5,6 @@ You'll implement a tiny Kubernetes-like system called **Kubitty**, complete with
 
 > This project is **optimized for learning**, not for production.
 > It won't run real workloads—but it *will* show you how Kubernetes really works.
-> Don't let the rough edges stop you from diving in.
 
 ## Target Audience
 
