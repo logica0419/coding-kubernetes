@@ -1,0 +1,17 @@
+$schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/v8.19.4/cspell.schema.json
+version: "0.2"
+dictionaryDefinitions:
+  - name: dictionary
+    path: "./dictionary.txt"
+    addWords: true
+dictionaries:
+  - dictionary
+ignorePaths:
+  - "cspell.config.yaml"
+  - "dictionary.txt"
+  - ".vscode"
+  - "**/Pipfile"
+  - "**/Pipfile.lock"
+  - "**/*.cfg"
+  - "**/*.conf"
+  - "**/*.j2"
