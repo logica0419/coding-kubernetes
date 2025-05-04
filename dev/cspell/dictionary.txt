@@ -1,2 +1,5 @@
 Kubitty
+logica
 mkdocs
+Nagami
+Takuto
