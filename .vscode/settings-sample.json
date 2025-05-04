@@ -2,7 +2,7 @@
   "cSpell.customDictionaries": {
     "words": {
       "name": "dictionary",
-      "path": "${workspaceRoot}/dev/dictionary.txt",
+      "path": "${workspaceRoot}/dev/cspell/dictionary.txt",
       "addWords": true
     },
     "custom": true,
