@@ -3,3 +3,4 @@ logica
 mkdocs
 Nagami
 Takuto
+vitepress
