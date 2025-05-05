@@ -20,7 +20,7 @@ func getLangsWithoutEN() ([]string, error) {
 	}
 
 	for _, file := range files {
-		if file.IsDir() && file.Name() != "en" {
+		if file.IsDir() && file.Name() != "en" && file.Name() != "public" {
 			langMap = append(langMap, file.Name())
 		}
 	}
