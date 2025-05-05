@@ -4,6 +4,7 @@
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
   "labels": ["dependencies"],
+  "postUpdateOptions": ["gomodUpdateImportPaths", "gomodTidy"],
   "packageRules": [
     {
       "description": "Upgrade go indirect dependencies",
