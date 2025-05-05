@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/pkg/errors"
+	"github.com/cockroachdb/errors"
 )
 
 func main() {

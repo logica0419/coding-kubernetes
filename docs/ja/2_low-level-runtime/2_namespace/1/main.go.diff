@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"syscall" // [!code ++]
 
-	"github.com/pkg/errors"
+	"github.com/cockroachdb/errors"
 )
 
 func main() {
@@ -27,7 +27,7 @@ func run(command []string) error {
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	cmd.SysProcAttr = &syscall.SysProcAttr{ // [!code ++]
-		Cloneflags: syscall.CLONE_NEWUTS | syscall.CLONE_NEWPID, // [!code ++]
+		Cloneflags: syscall.CLONE_NEWUTS, // [!code ++]
 	} // [!code ++]
 
 	if err := cmd.Run(); err != nil {
