@@ -7,6 +7,7 @@ gocognit
 gocritic
 gocyclo
 golangci
+gomod
 Kubitty
 logica
 mkdocs
@@ -14,6 +15,7 @@ Nagami
 nestif
 NEWUTS
 nolint
+reviewdog
 syscall
 Takuto
 varnamelen

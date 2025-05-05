@@ -12,3 +12,5 @@ ignorePaths:
   - "dictionary.txt"
   - "**/go.mod"
   - "**/go.sum"
+  - "**/.git"
+  - "**/.golangci.yml"
