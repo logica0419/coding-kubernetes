@@ -73,7 +73,6 @@ tasks:
 
   generate:
     desc: Generate diffs & README.md
-    internal: true
     deps:
       - task: check-binary
         vars:
