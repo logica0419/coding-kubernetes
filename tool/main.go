@@ -6,14 +6,14 @@ import (
 
 func main() {
 	if err := copySampleCodeFiles(); err != nil {
-		log.Panic(err)
+		log.Fatalf("%+v", err)
 	}
 
 	if err := generateSampleDiffFiles(); err != nil {
-		log.Panic(err)
+		log.Fatalf("%+v", err)
 	}
 
 	if err := copyReadMe(); err != nil {
-		log.Panic(err)
+		log.Fatalf("%+v", err)
 	}
 }
