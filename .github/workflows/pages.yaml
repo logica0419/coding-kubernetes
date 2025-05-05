@@ -17,6 +17,27 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  generate:
+    name: Generate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Task
+        uses: arduino/setup-task@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
+      - name: Generate
+        run: task generate
+      - name: Check Diffs
+        run: git status | grep -q "nothing to commit, working tree clean"
   build:
     name: Build
     runs-on: ubuntu-latest
