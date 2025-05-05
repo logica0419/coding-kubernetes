@@ -9,6 +9,5 @@ dictionaries:
 ignorePaths:
   - "cspell.config.yaml"
   - "dictionary.txt"
-  - ".vscode"
-  - "go.mod"
-  - "go.sum"
+  - "**/go.mod"
+  - "**/go.sum"
