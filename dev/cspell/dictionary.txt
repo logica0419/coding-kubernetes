@@ -1,6 +1,15 @@
+Cloneflags
+cyclop
+Fatalf
+funlen
+gocognit
+gocyclo
 Kubitty
 logica
 mkdocs
 Nagami
+nestif
+NEWUTS
 Takuto
+varnamelen
 vitepress
