@@ -1,4 +1,5 @@
 Cloneflags
+cockroachdb
 cyclop
 Fatalf
 funlen

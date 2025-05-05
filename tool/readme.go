@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/pkg/errors"
+	"github.com/cockroachdb/errors"
 )
 
 func copyReadMe() error {
