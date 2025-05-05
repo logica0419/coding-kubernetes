@@ -36,17 +36,70 @@ tasks:
     deps:
       - task: check-binary
         vars:
-          BINARY: mkdocs
-          INSTALL_DOC: https://squidfunk.github.io/mkdocs-material/getting-started/#installation
+          BINARY: bun
+          INSTALL_DOC: https://bun.sh/docs/installation
+      - task: check-binary
+        vars:
+          BINARY: go
+          INSTALL_DOC: https://go.dev/doc/install
     cmds:
       - cp .vscode/settings-sample.json .vscode/settings.json
+      - bun install
+
+  lint:
+    desc: Lint Go code
+    deps:
+      - task: check-binary
+        vars:
+          BINARY: golangci-lint
+          INSTALL_DOC: https://golangci-lint.run/welcome/install/
+    cmds:
+      - golangci-lint run
+
+  format:
+    desc: Format Go code
+    deps:
+      - task: check-binary
+        vars:
+          BINARY: go
+          INSTALL_DOC: https://go.dev/doc/install
+      - task: check-binary
+        vars:
+          BINARY: golangci-lint
+          INSTALL_DOC: https://golangci-lint.run/welcome/install/
+    cmds:
+      - go mod tidy
+      - golangci-lint fmt
+
+  generate:
+    desc: Generate diffs & README.md
+    internal: true
+    deps:
+      - task: check-binary
+        vars:
+          BINARY: go
+          INSTALL_DOC: https://go.dev/doc/install
+    cmds:
+      - go run tool/*.go
+
+  build:
+    desc: Build static assets of the documentation
+    deps:
+      - task: check-binary
+        vars:
+          BINARY: bun
+          INSTALL_DOC: https://bun.sh/docs/installation
+      - task: generate
+    cmds:
+      - bun run build
 
   dev:
     desc: Start the development server
     deps:
       - task: check-binary
         vars:
-          BINARY: mkdocs
-          INSTALL_DOC: https://squidfunk.github.io/mkdocs-material/getting-started/#installation
+          BINARY: bun
+          INSTALL_DOC: https://bun.sh/docs/installation
+      - task: generate
     cmds:
-      - mkdocs serve
+      - bun run dev
