@@ -3,6 +3,7 @@ cyclop
 Fatalf
 funlen
 gocognit
+gocritic
 gocyclo
 Kubitty
 logica
@@ -10,6 +11,7 @@ mkdocs
 Nagami
 nestif
 NEWUTS
+nolint
+syscall
 Takuto
 varnamelen
-vitepress
