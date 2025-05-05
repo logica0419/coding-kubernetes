@@ -17,11 +17,14 @@ const config: UserConfig<DefaultTheme.Config> = {
   title: "Coding Kubernetes",
   description:
     "Implementing a minimal Kubernetes from scratch. CRI / CNI implementation included.",
-  srcDir: "docs",
+  head: [["link", { rel: "icon", href: "/logo.webp" }]],
+
   locales: locales,
   rewrites: {
     "en/:content*": ":content*",
   },
+
+  srcDir: "docs",
   themeConfig: {
     i18nRouting: true,
     nav: [{ text: "Home", link: "/" }],
