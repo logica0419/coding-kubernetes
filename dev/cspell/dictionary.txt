@@ -1,3 +1,4 @@
+autobuild
 Cloneflags
 cockroachdb
 cyclop
