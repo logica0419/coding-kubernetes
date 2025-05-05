@@ -43,6 +43,7 @@ const sidebarConfigs: VitePressSidebarOptions[] = Object.entries(locales).map(
       collapsed: true,
       useTitleFromFileHeading: true,
       useFolderTitleFromIndexFile: true,
+      useFolderLinkFromIndexFile: true,
     };
   },
 );
