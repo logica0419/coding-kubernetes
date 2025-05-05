@@ -6,6 +6,7 @@ dictionaryDefinitions:
     addWords: true
 dictionaries:
   - dictionary
+enableGlobDot: true
 ignorePaths:
   - "cspell.config.yaml"
   - "dictionary.txt"
