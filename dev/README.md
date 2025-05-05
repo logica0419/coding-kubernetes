@@ -1,9 +1,11 @@
-# Development Guide
+# Development Guide (Documentation)
 
 ## Requirements
 
 - [Task](https://taskfile.dev/)
-- [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
+- [bun](https://bun.sh/)
+- [Go](https://go.dev/)
+- [golangci-lint](https://golangci-lint.run/)
 
 ## Workspace Initialization
 
@@ -19,7 +21,7 @@ Start a local development server with live reloading:
 task dev
 ```
 
-Access the documentation preview at [http://localhost:8000](http://localhost:8000).
+Access the documentation preview at [http://localhost:5173/](http://localhost:5173/).
 
 ## Build Static Site
 
@@ -29,4 +31,4 @@ Generate a static build of the documentation:
 task build
 ```
 
-The output will be in the `site/` directory and ready for deployment.
+The output will be in the `.vitepress/dist` directory and ready for deployment.
