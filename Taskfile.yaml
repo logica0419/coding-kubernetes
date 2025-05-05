@@ -81,6 +81,21 @@ tasks:
     cmds:
       - go run tool/*.go
 
+  build-go:
+    desc: Build Go code
+    deps:
+      - task: check-binary
+        vars:
+          BINARY: go
+          INSTALL_DOC: https://go.dev/doc/install
+    cmds:
+      - |
+        for dir in $(find . \( -wholename "*/docs/en/*" -o -wholename "*/tool/*" \) -name main.go | rev | cut -f2- -d'/' | rev); do
+          echo "Building $dir"
+          CGO_ENABLED=0 go build -o main "$dir"/*.go
+        done
+      - rm main
+
   build:
     desc: Build static assets of the documentation
     deps:
