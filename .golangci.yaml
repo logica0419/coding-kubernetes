@@ -1,0 +1,57 @@
+version: "2"
+
+linters:
+  default: all
+  disable:
+    - depguard
+    - dogsled
+    - exhaustruct
+    - godot
+    - nolintlint
+    - wrapcheck
+
+  settings:
+    cyclop:
+      max-complexity: 15
+    gosec:
+      excludes:
+        - G204
+        - G301
+        - G306
+    lll:
+      line-length: 150
+    revive:
+      rules:
+        - name: package-comments
+          disabled: true
+    staticcheck:
+      checks:
+        - all
+        - -ST1000
+        - -ST1022
+    varnamelen:
+      ignore-names:
+        - tt
+        - ok
+        - tx
+        - id
+        - db
+        - to
+        - i
+    wsl:
+      allow-multiline-assign: true
+      allow-cuddle-used-in-block: true
+      force-case-trailing-whitespace: 1
+      force-err-cuddling: true
+
+formatters:
+  enable:
+    - gci
+    - gofumpt
+  settings:
+    gci:
+      sections:
+        - standard
+        - default
+        - prefix(github.com/logica0419/vault-provisioner)
+        - blank
