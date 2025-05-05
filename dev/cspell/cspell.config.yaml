@@ -1,4 +1,4 @@
-$schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/v8.19.4/cspell.schema.json
+$schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/v9.0.0/cspell.schema.json
 version: "0.2"
 dictionaryDefinitions:
   - name: dictionary
