@@ -13,4 +13,4 @@ ignorePaths:
   - "**/go.mod"
   - "**/go.sum"
   - "**/.git"
-  - "**/.golangci.yml"
+  - "**/.golangci.yaml"
