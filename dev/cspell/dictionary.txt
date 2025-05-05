@@ -5,6 +5,7 @@ funlen
 gocognit
 gocritic
 gocyclo
+golangci
 Kubitty
 logica
 mkdocs
