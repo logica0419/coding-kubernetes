@@ -20,3 +20,4 @@ syscall
 Takuto
 varnamelen
 vitepress
+wholename
