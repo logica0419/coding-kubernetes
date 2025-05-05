@@ -2,12 +2,13 @@
 
 ## Requirements
 
-- [bun](https://bun.sh/)
+- [Task](https://taskfile.dev/)
+- [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
 
 ## Workspace Initialization
 
 ```sh
-bun install
+sh init.sh
 ```
 
 ## Run Development Server
@@ -15,17 +16,17 @@ bun install
 Start a local development server with live reloading:
 
 ```sh
-bun run dev
+task dev
 ```
 
-Access the documentation preview at [http://localhost:5173/](http://localhost:5173/).
+Access the documentation preview at [http://localhost:8000](http://localhost:8000).
 
 ## Build Static Site
 
 Generate a static build of the documentation:
 
 ```sh
-bun run build
+task build
 ```
 
-The output will be in the `.vitepress/dist` directory and ready for deployment.
+The output will be in the `site/` directory and ready for deployment.

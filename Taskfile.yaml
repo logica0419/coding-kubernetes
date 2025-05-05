@@ -1,0 +1,52 @@
+version: 3
+
+# Task definition order
+#
+# 1.
+#   desc
+#
+# 2.
+#   internal
+#   dir
+#   silent
+#
+# 3.
+#   vars
+#   status / sources / generates / methods / preconditions
+#   deps
+#
+# 4.
+#   cmds
+
+tasks:
+  check-binary:
+    desc: Check if the binary exists
+    internal: true
+    silent: true
+    cmds:
+      - |
+        if ! (type {{.BINARY}} >/dev/null 2>&1); then
+          echo "Install \"{{if .ALT_NAME}}{{.ALT_NAME}}{{else}}{{.BINARY}}{{end}}\" and rerun this task."
+          echo {{.INSTALL_DOC}}
+          exit 1
+        fi
+
+  init:
+    desc: Initialize the workspace
+    deps:
+      - task: check-binary
+        vars:
+          BINARY: mkdocs
+          INSTALL_DOC: https://squidfunk.github.io/mkdocs-material/getting-started/#installation
+    cmds:
+      - cp .vscode/settings-sample.json .vscode/settings.json
+
+  dev:
+    desc: Start the development server
+    deps:
+      - task: check-binary
+        vars:
+          BINARY: mkdocs
+          INSTALL_DOC: https://squidfunk.github.io/mkdocs-material/getting-started/#installation
+    cmds:
+      - mkdocs serve
