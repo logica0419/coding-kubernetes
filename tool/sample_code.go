@@ -28,7 +28,9 @@ func getLangsWithoutEN() ([]string, error) {
 	return langMap, nil
 }
 
-func listSampleCodeFolders(prefix string) (map[string][]string, error) {
+func listSampleCodeFiles(prefix string) (map[string][]string, error) {
+	// The key is the filename that declares the component name.
+	// The value is the list of file paths that has the filename.
 	sourceMap := make(map[string][]string)
 
 	err := filepath.WalkDir(prefix, func(path string, d fs.DirEntry, err error) error {
@@ -36,15 +38,15 @@ func listSampleCodeFolders(prefix string) (map[string][]string, error) {
 			return errors.WithStack(err)
 		}
 
+		component := filepath.Base(path)
 		pathSlice := strings.Split(path, "/")
-		chapter := pathSlice[2]
-		section := strings.Join(pathSlice[3:], "/")
+		section := strings.Join(pathSlice[2:], "/")
 
-		if _, ok := sourceMap[chapter]; !ok {
-			sourceMap[chapter] = make([]string, 0)
+		if _, ok := sourceMap[component]; !ok {
+			sourceMap[component] = make([]string, 0)
 		}
 
-		sourceMap[chapter] = append(sourceMap[chapter], section)
+		sourceMap[component] = append(sourceMap[component], section)
 
 		return nil
 	})
@@ -56,7 +58,7 @@ func listSampleCodeFolders(prefix string) (map[string][]string, error) {
 }
 
 func copySampleCodeFiles() error {
-	sourceMap, err := listSampleCodeFolders("docs/en")
+	srcMap, err := listSampleCodeFiles("docs/en")
 	if err != nil {
 		return err
 	}
@@ -67,10 +69,12 @@ func copySampleCodeFiles() error {
 	}
 
 	for _, lang := range langMap {
-		for chapter, sections := range sourceMap {
-			for _, section := range sections {
-				srcPath := fmt.Sprintf("docs/en/%s/%s", chapter, section)
-				dstPath := fmt.Sprintf("docs/%s/%s/%s", lang, chapter, section)
+		for _, paths := range srcMap {
+			for _, path := range paths {
+				srcPath := "docs/en/" + path
+				dstPath := fmt.Sprintf("docs/%s/%s", lang, path)
+
+				log.Printf("copying %s (dest lang: %s)\n", path, lang)
 
 				const dirPermission = 0o755
 				if err = os.MkdirAll(filepath.Dir(dstPath), dirPermission); err != nil {
@@ -102,19 +106,21 @@ func generateSampleDiffFiles() error {
 	langMap = append(langMap, "en")
 
 	for _, lang := range langMap {
-		sourceMap, err := listSampleCodeFolders("docs/" + lang)
+		srcMap, err := listSampleCodeFiles("docs/" + lang)
 		if err != nil {
 			return err
 		}
 
-		for chapter, sections := range sourceMap {
-			for i, section := range sections {
+		for _, paths := range srcMap {
+			for i, path := range paths {
 				if i == 0 {
 					continue
 				}
 
-				path1 := fmt.Sprintf("docs/%s/%s/%s", lang, chapter, sections[i-1])
-				path2 := fmt.Sprintf("docs/%s/%s/%s", lang, chapter, section)
+				log.Printf("generating diff between %s and %s (lang: %s)\n", paths[i-1], path, lang)
+
+				path1 := fmt.Sprintf("docs/%s/%s", lang, paths[i-1])
+				path2 := fmt.Sprintf("docs/%s/%s", lang, path)
 
 				src1, err := os.ReadFile(filepath.Clean(path1))
 				if err != nil {
@@ -126,13 +132,11 @@ func generateSampleDiffFiles() error {
 					return errors.WithStack(err)
 				}
 
-				log.Printf("Generating diff between %s and %s\n", path1, path2)
-
 				a, b, c := DiffLinesToRunes(string(src1), string(src2))
 				diffs := DiffMainRunes(a, b)
 				diffs = DiffCharsToLines(diffs, c)
 
-				diffPath := fmt.Sprintf("docs/%s/%s/%s.diff", lang, chapter, section)
+				diffPath := fmt.Sprintf("docs/%s/%s.diff", lang, path)
 				if err = exportDiffs(diffPath, diffs); err != nil {
 					return err
 				}
