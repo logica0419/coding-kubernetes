@@ -1,13 +1,8 @@
-module github.com/logica0419/coding-kubernetes
+module github.com/logica0419/coding-kubernetes/ref-impl
 
 go 1.24.2
 
-replace your_module_name => ./ref-impl
-
-require (
-	github.com/cockroachdb/errors v1.12.0
-	your_module_name v0.0.0-00010101000000-000000000000
-)
+require github.com/cockroachdb/errors v1.12.0
 
 require (
 	github.com/cockroachdb/logtags v0.0.0-20241215232642-bb51bb14a506 // indirect

@@ -13,11 +13,20 @@ linters:
   settings:
     cyclop:
       max-complexity: 15
+    gomoddirectives:
+      replace-local: true
     gosec:
       excludes:
         - G204
         - G301
         - G306
+    ireturn:
+      allow:
+        - anon
+        - error
+        - empty
+        - stdlib
+        - generic
     lll:
       line-length: 150
     revive:
