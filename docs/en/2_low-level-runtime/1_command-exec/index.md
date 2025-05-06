@@ -2,4 +2,4 @@
 
 Let's make a low-leveled container runtime!
 
-<<< ./main.go{go:line-numbers}
+<<< ./run.go{go:line-numbers}
