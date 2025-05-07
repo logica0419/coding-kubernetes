@@ -69,6 +69,7 @@ tasks:
           INSTALL_DOC: https://golangci-lint.run/welcome/install/
     cmds:
       - go mod tidy
+      - cd ref-impl && go mod tidy
       - golangci-lint fmt
 
   generate:
