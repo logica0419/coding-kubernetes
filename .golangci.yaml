@@ -8,7 +8,6 @@ linters:
     - exhaustruct
     - godot
     - nolintlint
-    - wrapcheck
 
   settings:
     cyclop:
@@ -52,6 +51,10 @@ linters:
       allow-cuddle-used-in-block: true
       force-case-trailing-whitespace: 1
       force-err-cuddling: true
+    wrapcheck:
+      ignore-sigs:
+        - .WithStack(
+        - github.com/logica0419/coding-kubernetes
 
 formatters:
   enable:
