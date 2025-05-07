@@ -55,6 +55,7 @@ tasks:
           INSTALL_DOC: https://golangci-lint.run/welcome/install/
     cmds:
       - golangci-lint run
+      - cd ref-impl && golangci-lint run
 
   format:
     desc: Format Go code
