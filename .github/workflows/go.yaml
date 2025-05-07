@@ -25,6 +25,10 @@ jobs:
           cache-dependency-path: go.sum
       - name: Run golangci-lint
         uses: golangci/golangci-lint-action@v8
+      - name: Run golangci-lint on ref-impl
+        uses: golangci/golangci-lint-action@v8
+        with:
+          working-directory: ref-impl
       - name: Setup Task
         uses: arduino/setup-task@v2
         with:
