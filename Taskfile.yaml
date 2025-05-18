@@ -92,7 +92,12 @@ tasks:
           INSTALL_DOC: https://go.dev/doc/install
     cmds:
       - |
-        for dir in $(find . \( -wholename "*/docs/en/*" -o -wholename "*/tool/*" \) -name main.go | rev | cut -f2- -d'/' | rev); do
+        for file in $(find . \( -wholename "*/docs/en/*" -o -wholename "*/tool/*" -o -wholename "*/ref-impl/*" \) -name "*.go"); do
+          if ! grep "func main()" "$file" >/dev/null; then
+            continue
+          fi
+
+          dir=$(dirname "$file")
           echo "Building $dir"
           CGO_ENABLED=0 go build -o main "$dir"/*.go
         done
