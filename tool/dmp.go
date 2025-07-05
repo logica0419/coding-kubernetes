@@ -426,6 +426,7 @@ func diffHalfMatch(text1, text2 []rune) [][]rune {
 	hm2 := diffHalfMatchI(longText, shortText, int(float64(len(longText)+1)/2)) // nolint: mnd
 
 	var halfMatch [][]rune
+
 	switch {
 	case hm1 == nil && hm2 == nil:
 		return nil

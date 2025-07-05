@@ -7,7 +7,9 @@ linters:
     - dogsled
     - exhaustruct
     - godot
+    - noinlineerr
     - nolintlint
+    - wsl # deprecated
 
   settings:
     cyclop:
@@ -46,11 +48,13 @@ linters:
         - db
         - to
         - i
-    wsl:
-      allow-multiline-assign: true
-      allow-cuddle-used-in-block: true
-      force-case-trailing-whitespace: 1
-      force-err-cuddling: true
+    wsl_v5:
+      allow-first-in-block: true
+      allow-whole-block: false
+      branch-max-lines: 2
+      case-max-lines: 1
+      enable:
+        - err
     wrapcheck:
       ignore-sigs:
         - .WithStack(
