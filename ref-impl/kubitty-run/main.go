@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"log"
 	"os"
 	"os/exec"
@@ -22,7 +23,7 @@ func main() {
 }
 
 func run(command []string) error {
-	cmd := exec.Command(command[0], command[1:]...)
+	cmd := exec.CommandContext(context.Background(), command[0], command[1:]...)
 	cmd.Stdin, cmd.Stdout, cmd.Stderr = os.Stdin, os.Stdout, os.Stderr
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		Cloneflags: syscall.CLONE_NEWUTS,
