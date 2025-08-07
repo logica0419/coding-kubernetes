@@ -46,7 +46,7 @@ jobs:
           fetch-depth: 0
       - name: Set Mod Cache
         id: mod-cache
-        uses: actions/cache@v4.2.3
+        uses: actions/cache@v4.2.4
         with:
           path: ./node_modules
           key: mod-${{ hashFiles('**/bun.lock') }}
