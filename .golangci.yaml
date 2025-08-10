@@ -69,5 +69,5 @@ formatters:
       sections:
         - standard
         - default
-        - prefix(github.com/logica0419/vault-provisioner)
+        - prefix(github.com/logica0419/coding-kubernetes)
         - blank
