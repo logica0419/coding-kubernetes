@@ -1,3 +1,5 @@
+// Copied from https://github.com/sergi/go-diff
+// Customized by Takuto Nagami (logica)
 package main
 
 import (
@@ -5,9 +7,6 @@ import (
 	"strings"
 	"unicode/utf8"
 )
-
-// Copied from https://github.com/sergi/go-diff
-// Customized by Takuto Nagami (logica)
 
 const (
 	UnicodeInvalidRangeStart = 0xD800
