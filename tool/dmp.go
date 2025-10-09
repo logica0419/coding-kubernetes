@@ -1,11 +1,12 @@
-// Copied from https://github.com/sergi/go-diff
-// Customized by Takuto Nagami (logica)
 package main
 
 import (
 	"strings"
 	"time"
 )
+
+// Copied from https://github.com/sergi/go-diff
+// Customized by Takuto Nagami (logica)
 
 // Operation defines the operation of a diff item.
 type Operation int8
