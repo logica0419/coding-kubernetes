@@ -7,7 +7,7 @@ import (
 	"os/exec"
 	"syscall"
 
-	"github.com/cockroachdb/errors"
+	"github.com/k1LoW/errors"
 )
 
 func main() {

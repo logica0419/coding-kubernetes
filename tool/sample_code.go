@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/cockroachdb/errors"
+	"github.com/k1LoW/errors"
 )
 
 func getLangsWithoutEN() ([]string, error) {

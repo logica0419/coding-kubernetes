@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/cockroachdb/errors"
+	"github.com/k1LoW/errors"
 	"golang.org/x/sys/unix"
 )
 
@@ -13,7 +13,7 @@ func main() {
 	switch os.Args[1] {
 	case "run":
 		if err := run(os.Args[2:]); err != nil {
-			log.Fatalf("%+v", err)
+			log.Fatalln(errors.StackTraces(err))
 		}
 
 	default:
