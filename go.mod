@@ -4,7 +4,10 @@ go 1.24.2
 
 replace your_module_name => ./ref-impl
 
-require github.com/cockroachdb/errors v1.12.0
+require (
+	github.com/cockroachdb/errors v1.12.0
+	golang.org/x/sys v0.37.0
+)
 
 require (
 	github.com/cockroachdb/logtags v0.0.0-20241215232642-bb51bb14a506 // indirect
@@ -15,6 +18,5 @@ require (
 	github.com/kr/text v0.2.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/rogpeppe/go-internal v1.14.1 // indirect
-	golang.org/x/sys v0.37.0 // indirect
 	golang.org/x/text v0.30.0 // indirect
 )

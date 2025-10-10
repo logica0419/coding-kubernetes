@@ -1,12 +1,12 @@
 package main
 
 import (
-	"context"
 	"log"
 	"os"
 	"os/exec"
 
 	"github.com/cockroachdb/errors"
+	"golang.org/x/sys/unix"
 )
 
 func main() {
@@ -22,10 +22,12 @@ func main() {
 }
 
 func run(command []string) error {
-	cmd := exec.CommandContext(context.Background(), command[0], command[1:]...)
-	cmd.Stdin, cmd.Stdout, cmd.Stderr = os.Stdin, os.Stdout, os.Stderr
+	path, err := exec.LookPath(command[0])
+	if err != nil {
+		return errors.WithStack(err)
+	}
 
-	if err := cmd.Run(); err != nil {
+	if err := unix.Exec(path, command, os.Environ()); err != nil {
 		return errors.WithStack(err)
 	}
 
