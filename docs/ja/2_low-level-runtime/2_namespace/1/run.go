@@ -1,20 +1,19 @@
 package main
 
 import (
-	"context"
 	"log"
 	"os"
 	"os/exec"
-	"syscall"
 
 	"github.com/k1LoW/errors"
+	"golang.org/x/sys/unix"
 )
 
 func main() {
 	switch os.Args[1] {
 	case "run":
 		if err := run(os.Args[2:]); err != nil {
-			log.Fatalf("%+v", err)
+			log.Fatalln(errors.StackTraces(err))
 		}
 
 	default:
@@ -23,13 +22,16 @@ func main() {
 }
 
 func run(command []string) error {
-	cmd := exec.CommandContext(context.Background(), command[0], command[1:]...)
-	cmd.Stdin, cmd.Stdout, cmd.Stderr = os.Stdin, os.Stdout, os.Stderr
-	cmd.SysProcAttr = &syscall.SysProcAttr{
-		Cloneflags: syscall.CLONE_NEWUTS,
+	if err := unix.Unshare(unix.CLONE_NEWUTS); err != nil {
+		return errors.WithStack(err)
 	}
 
-	if err := cmd.Run(); err != nil {
+	path, err := exec.LookPath(command[0])
+	if err != nil {
+		return errors.WithStack(err)
+	}
+
+	if err := unix.Exec(path, command, os.Environ()); err != nil {
 		return errors.WithStack(err)
 	}
 
