@@ -3,6 +3,7 @@ Cloneflags
 cockroachdb
 cyclop
 Fatalf
+Fatalln
 funlen
 gocognit
 gocritic
