@@ -25,7 +25,7 @@ func run(command []string) error {
 	if err := unix.Unshare(unix.CLONE_NEWUTS); err != nil { // [!code ++]
 		return errors.WithStack(err) // [!code ++]
 	} // [!code ++]
- // [!code ++]
+
 	path, err := exec.LookPath(command[0])
 	if err != nil {
 		return errors.WithStack(err)

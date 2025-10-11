@@ -158,7 +158,7 @@ func exportDiffs(filePath string, diffs []Diff) error {
 	for _, diff := range diffs {
 		switch diff.Type {
 		case DiffEqual:
-			_, err = fmt.Fprintf(file, "%s", diff.Text)
+			_, err = file.WriteString(diff.Text)
 			if err != nil {
 				return errors.WithStack(err)
 			}
@@ -166,7 +166,11 @@ func exportDiffs(filePath string, diffs []Diff) error {
 		case DiffDelete:
 			texts := strings.Split(diff.Text, "\n")
 			for _, text := range texts[:len(texts)-1] {
-				_, err = fmt.Fprintf(file, "%s // [!code --]\n", text)
+				if text != "" {
+					text += " // [!code --]"
+				}
+
+				_, err = file.WriteString(text + "\n")
 				if err != nil {
 					return errors.WithStack(err)
 				}
@@ -175,7 +179,11 @@ func exportDiffs(filePath string, diffs []Diff) error {
 		case DiffInsert:
 			texts := strings.Split(diff.Text, "\n")
 			for _, text := range texts[:len(texts)-1] {
-				_, err = fmt.Fprintf(file, "%s // [!code ++]\n", text)
+				if text != "" {
+					text += " // [!code ++]"
+				}
+
+				_, err = file.WriteString(text + "\n")
 				if err != nil {
 					return errors.WithStack(err)
 				}
