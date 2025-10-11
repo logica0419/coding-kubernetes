@@ -4,32 +4,18 @@ import (
 	"log"
 	"os"
 	"os/exec"
-	"runtime"
 
 	"github.com/k1LoW/errors"
 	"golang.org/x/sys/unix"
 )
 
 func main() {
-	switch os.Args[1] {
-	case "run":
-		if err := run(os.Args[2:]); err != nil {
-			log.Fatalln(errors.StackTraces(err))
-		}
-
-	default:
-		log.Fatalf("unknown command: %s", os.Args[1])
+	if err := run(os.Args[1:]); err != nil {
+		log.Fatalln(errors.StackTraces(err))
 	}
 }
 
 func run(command []string) error {
-	runtime.LockOSThread()
-	defer runtime.UnlockOSThread()
-
-	if err := unix.Unshare(unix.CLONE_NEWUTS); err != nil {
-		return errors.WithStack(err)
-	}
-
 	path, err := exec.LookPath(command[0])
 	if err != nil {
 		return errors.WithStack(err)

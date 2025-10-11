@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"runtime"
 
 	"github.com/k1LoW/errors"
 	"golang.org/x/sys/unix"
@@ -22,6 +23,9 @@ func main() {
 }
 
 func run(command []string) error {
+	runtime.LockOSThread()
+	defer runtime.UnlockOSThread()
+
 	if err := unix.Unshare(unix.CLONE_NEWUTS); err != nil {
 		return errors.WithStack(err)
 	}
