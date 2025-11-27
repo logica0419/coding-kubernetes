@@ -44,7 +44,7 @@ linters:
     - gomoddirectives
     - gomodguard
     - goprintffuncname
-    - gosec
+    # - gosec  https://github.com/securego/gosec/issues/1406
     - gosmopolitan
     - govet
     - grouper

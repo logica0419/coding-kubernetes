@@ -111,5 +111,12 @@ func runeToInt(src rune) uint32 {
 		return result
 	}
 
+	//nolint: mnd
+	if size == 4 {
+		result := uint32(bytes[0]&0b111)<<18 | uint32(bytes[1]&0b111111)<<12 | uint32(bytes[2]&0b111111)<<6 | uint32(bytes[3]&0b111111)
+
+		return result - UnicodeInvalidRangeDelta - 3
+	}
+
 	panic(fmt.Sprintf("Unexpected state decoding rune=%v size=%d", src, size))
 }
