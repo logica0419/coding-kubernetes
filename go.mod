@@ -6,5 +6,5 @@ replace your_module_name => ./ref-impl
 
 require (
 	github.com/k1LoW/errors v1.1.1
-	golang.org/x/sys v0.37.0
+	golang.org/x/sys v0.38.0
 )
